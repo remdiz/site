@@ -170,4 +170,41 @@ dMVC.TaskController = dMVC.Controller.subClass({
 
 });
 
+dMVC.TopMenuController = dMVC.Controller.subClass({
+
+    contactPressed: function(req, res, next) {
+        res.json([
+            {command: 'hideJumbo'},
+            {command: 'showContacts'}
+        ]);
+    },
+
+    goHome: function(req, res, next) {
+        res.json([
+            {command: 'showJumbo'},
+            {command: 'homePage'}
+        ]);
+    },
+
+    quickStart: function(req, res, next) {
+        res.json([
+            {command: 'hideJumbo'},
+            {command: 'quickStartPage'}
+        ]);
+    }
+
+});
+
+dMVC.BreadcrumbController = dMVC.Controller.subClass({
+
+    goHome: function(req, res, next) {
+        res.json([
+            {command: 'showJumbo'},
+            {command: 'homePage'}
+        ]);
+    }
+
+});
+
+
 module.exports = dMVC.router;

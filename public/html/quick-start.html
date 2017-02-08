@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+</head>
+<body>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="text-center">Quick-start guide to use dMVC Framework</h2>
+        <hr class="half-rule">
+        <h4>
+            See simple app code here: <a href="https://github.com/remdiz/dmvc-simple-app" target="_blank">GitHub</a>
+        </h4>
+        <h3>
+            <span class="label label-primary">Client-side</span>
+            <small>(public/javascripts/main.js)</small>
+        </h3>
+        <p>
+            Create an application instance: new AppView({el: '#app_form'}). To implement View classes we need
+            to inherit from dMVC.View - the main presentation class or its derivatives. Argument - the element ID,
+            which is attached to the view-object.
+        </p>
+        <p>
+            <strong>AppView Class fields:</strong>
+        </p>
+        <p>
+            <u>type: 'App'</u> - symbolic name by which the view associated with the controller
+        </p>
+        <p>
+            <u>commands: {"create": "createTask",...}</u> - server commands (create, delete),
+            on which the view will react by calling the appropriate methods (createTask, deleteTask)
+        </p>
+        <p>
+            <u>events: {"submit": "formSubmit"}</u> - HTML page events, on which the object is signed
+        </p>
+        <p>
+            <strong>Methods:</strong>
+        </p>
+        <p>
+            <u>init</u> - it is called automatically when you create an object
+        </p>
+        <p>
+            <u>deleteTask</u> - called, when 'delete' command received from server.
+            It is call standard View object`s function 'remove'. It is designed to remove the child views.
+        </p>
+        <p>
+            <u>createTask</u> - called, when 'create' command received from server.
+            Create a new TaskView object to show the task. Call the add method for joining the child object.
+            In HTML markup element will be submitted by 'li' tag.
+        </p>
+        <p>
+            <u>formSubmit</u> - called in response to the form's submit event. For the controller notification
+            is called a standard 'process' function. It gets type of rised event (createTask) and the
+            data required for processing (field value in the input form)
+        </p>
+
+        <h3>
+            <span class="label label-primary">Server-side</span>
+            <small>(controllers/index.js)</small>
+        </h3>
+        <p>
+            To create the controllers we need to implement the classes in the dMVC namespace.
+            Their name should start with the type specified in the View ('type' field) + 'Controller'.
+            For AppView controller we creating a dMVC.AppController class. It is necessary to
+            implement the methods that will be called from the client,
+            by this.process('controller_method_name') invocation. In this case, the function createTask.
+            After performing the necessary logic to client request processing, it is possible
+            to return a set of commands to display results. To do this, we send an array like:
+            <pre>
+                res.json([{command: 'create', id: record.id, text: record.task, done: record.done}])
+            </pre>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

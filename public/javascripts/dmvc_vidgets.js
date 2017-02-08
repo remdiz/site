@@ -404,6 +404,7 @@
             var type = options.type || 'tabs';
             opt.htmlTag = 'ul';
             opt.class = 'nav nav-' + type;
+            opt.container = options.container;
             if(options.vertical) {
                 opt.class = 'nav nav-pills nav-stacked';
             }
@@ -500,6 +501,7 @@
             options = options || {};
             var opt = {};
             opt.htmlTag = 'nav';
+            opt.container = options.container;
             opt.class = options.inverse ? 'navbar navbar-inverse' : 'navbar navbar-default';
 
             this._super(opt);
@@ -687,6 +689,7 @@
         _preConstruct: function (options) {
             var opt = {};
             opt.htmlTag = 'ol';
+            opt.container = options.container;
             opt.class = 'breadcrumb';
             this._super(opt);
         },

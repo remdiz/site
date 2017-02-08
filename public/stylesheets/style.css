@@ -1,4 +1,20 @@
-/*
-div {
-  border: solid 2px black;
-}*/
+html,body {
+    height: 100%;
+    min-height: 100%;
+}
+.btn-outline {
+    color: #563d7c;
+    background-color: transparent;
+    border-color: #563d7c;
+}
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active {
+    color: #fff;
+    background-color: #563d7c;
+    border-color: #563d7c;
+}
+
+.body-row {
+    min-height: 600px;
+}
